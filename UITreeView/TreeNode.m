@@ -26,13 +26,13 @@
     return self.description;
 }
 
-- (NSArray<TreeNode *> *) visibleItems {
+- (NSArray<TreeNode *> *) visibleNodes {
     NSMutableArray *allElements = [[NSMutableArray alloc] init];
     [allElements addObject:self];
     if (_nodeState == TreeNodeStateExpanded) {
         if (_nodeType == TreeNodeTypeFolder) {
             for (TreeNode *child in _children) {
-                [allElements addObjectsFromArray:[child visibleItems]];
+                [allElements addObjectsFromArray:[child visibleNodes]];
             }
         }
     }

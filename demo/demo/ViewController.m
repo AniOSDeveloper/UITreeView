@@ -20,11 +20,11 @@
 
 #pragma mark UITreeViewDelegate
 - (NSInteger) numberOfRowsInTreeView:(UITreeView *)treeView {
-    return [_rootTreeNode visibleItems].count;
+    return [_rootTreeNode visibleNodes].count;
 }
 
 - (TreeNode *) treeView:(UITreeView *)treeView treeNodeForRow:(NSInteger)row {
-    return [[_rootTreeNode visibleItems] objectAtIndex:row];
+    return [[_rootTreeNode visibleNodes] objectAtIndex:row];
 }
 
 - (void) treeView:(UITreeView *)treeView didSelectForTreeNode:(TreeNode *)treeNode {

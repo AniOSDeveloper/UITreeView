@@ -34,5 +34,5 @@ typedef NS_ENUM(NSInteger, TreeNodeType) {
 
 - (instancetype) initWithValue:(id)value;
 - (void) addChild:(TreeNode *)newChild;
-- (NSArray<TreeNode *> *) visibleItems;
+- (NSArray<TreeNode *> *) visibleNodes;
 @end
