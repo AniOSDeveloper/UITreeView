@@ -144,7 +144,7 @@
 - (NSIndexPath *) tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
     TreeNode *srcNode = [self treeNodeForIndexPath:sourceIndexPath];
     TreeNode *targetNode = [self treeNodeForIndexPath:proposedDestinationIndexPath];
-    if ([srcNode containTreeNode:targetNode] || srcNode==targetNode) {
+    if ([srcNode containsTreeNode:targetNode] || srcNode==targetNode) {
         return sourceIndexPath;
     } else {
         // NSLog(@"Moving to target node \"%@\"", targetNode.title);

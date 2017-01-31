@@ -57,7 +57,7 @@
 }
 
 - (void) moveToDestination:(TreeNode *)destination {
-    NSAssert([self containTreeNode:destination]==NO, @"[self containTreeNode:destination] something gent wrong!");
+    NSAssert([self containsTreeNode:destination]==NO, @"[self containsTreeNode:destination] something gent wrong!");
     if (self == destination || destination == nil) {
         return;
     }
@@ -75,7 +75,7 @@
     self.parent = parent;
 }
 
-- (BOOL) containTreeNode:(TreeNode *)treeNode {
+- (BOOL) containsTreeNode:(TreeNode *)treeNode {
     TreeNode *parent = treeNode.parent;
     if (parent == nil) {
         return NO;
@@ -83,7 +83,7 @@
     if (self == parent) {
         return YES;
     } else {
-        return [self containTreeNode:parent];
+        return [self containsTreeNode:parent];
     }
 }
 

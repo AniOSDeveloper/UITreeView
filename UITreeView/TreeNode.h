@@ -25,6 +25,6 @@
 - (void) appendChild:(TreeNode *)newChild;
 - (void) removeFromParent;
 - (void) moveToDestination:(TreeNode *)destination;
-- (BOOL) containTreeNode:(TreeNode *)treeNode;
+- (BOOL) containsTreeNode:(TreeNode *)treeNode;
 - (NSArray<TreeNode *> *) visibleNodes;
 @end
