@@ -33,13 +33,11 @@
 
 - (void) treeView:(UITreeView *)treeView treeNode:(TreeNode *)treeNode checked:(BOOL)checked {
     NSLog(@"Node %@ checked = %d", treeNode.title, checked);
-    treeNode.checked = checked;
     [_tree reloadData];
 }
 
 - (void) treeView:(UITreeView *)treeView treeNode:(TreeNode *)treeNode expanded:(BOOL)expanded {
     NSLog(@"Node %@ expanded = %d", treeNode.title, expanded);
-    treeNode.expanded = expanded;
     if (treeNode.hasChildren) {
         [_tree reloadData];
     }

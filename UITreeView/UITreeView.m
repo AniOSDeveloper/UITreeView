@@ -83,8 +83,9 @@
 }
 
 - (void) treeViewCell:(TreeViewCell *)treeViewCell checked:(BOOL)checked {
+    TreeNode *treeNode = [self treeNodeForTreeViewCell:treeViewCell];
+    treeNode.checked = checked;
     if ([_treeViewDelegate respondsToSelector:@selector(treeView:treeNode:checked:)]) {
-        TreeNode *treeNode = [self treeNodeForTreeViewCell:treeViewCell];
         [_treeViewDelegate treeView:self treeNode:treeNode checked:checked];
     }
 }
@@ -96,6 +97,7 @@
 - (void) treeViewCell:(TreeViewCell *)treeViewCell expanded:(BOOL)expanded {
     TreeNode *treeNode = [self treeNodeForTreeViewCell:treeViewCell];
     if (treeNode.isFolder) {
+        treeNode.expanded = expanded;
         if ([_treeViewDelegate respondsToSelector:@selector(treeView:treeNode:expanded:)]) {
             [_treeViewDelegate treeView:self treeNode:treeNode expanded:expanded];
         }
