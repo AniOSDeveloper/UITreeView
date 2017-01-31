@@ -45,9 +45,6 @@
 
 - (void) treeView:(UITreeView *)treeView treeNode:(TreeNode *)treeNode expanded:(BOOL)expanded {
     NSLog(@"Node %@ expanded = %d", treeNode.title, expanded);
-    if (treeNode.hasChildren) {
-        [_tree reloadData];
-    }
 }
 
 #pragma mark -

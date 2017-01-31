@@ -108,6 +108,9 @@
     TreeNode *treeNode = [self treeNodeForTreeViewCell:treeViewCell];
     if (treeNode.isFolder) {
         treeNode.expanded = expanded;
+        if (treeNode.hasChildren) {
+            [self reloadData];
+        }
         if ([_treeViewDelegate respondsToSelector:@selector(treeView:treeNode:expanded:)]) {
             [_treeViewDelegate treeView:self treeNode:treeNode expanded:expanded];
         }
