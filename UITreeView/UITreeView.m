@@ -34,17 +34,24 @@
 - (void) setFont:(UIFont *)font {
     _font = font;
     [self reloadData];
-    [self resetSelection];
+    [self resetSelection:NO];
 }
 
-- (void) resetSelection {
+- (void) resetSelection:(BOOL)delay {
     NSInteger row = NSNotFound;
     if ([_treeViewDelegate respondsToSelector:@selector(treeView:rowForTreeNode:)]) {
         row = [_treeViewDelegate treeView:self rowForTreeNode:_selectedNode];
     }
     if (row != NSNotFound) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-        [self selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        dispatch_block_t run = ^ {
+            [self selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        };
+        if (delay) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), run);
+        } else {
+            run();
+        }
     }
 }
 
@@ -93,10 +100,10 @@
         }
         if (treeNode.isFolder && treeNode.expanded && treeNode.hasChildren) {
             [self reloadData];
-            [self resetSelection];
         } else {
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
+        [self resetSelection:YES];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
@@ -158,7 +165,7 @@
         treeNode.expanded = expanded;
         if (treeNode.hasChildren) {
             [self reloadData];
-            [self resetSelection];
+            [self resetSelection:NO];
         }
         if ([_treeViewDelegate respondsToSelector:@selector(treeView:treeNode:expanded:)]) {
             [_treeViewDelegate treeView:self treeNode:treeNode expanded:expanded];

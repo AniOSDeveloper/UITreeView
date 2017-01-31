@@ -18,7 +18,7 @@
     TreeNode *_rootTreeNode;
 }
 
-#pragma mark UITreeViewDelegate
+#pragma mark - UITreeViewDelegate
 - (NSInteger) numberOfRowsInTreeView:(UITreeView *)treeView {
     return [_rootTreeNode visibleNodes].count;
 }
