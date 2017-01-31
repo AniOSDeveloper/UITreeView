@@ -31,6 +31,26 @@
     return self;
 }
 
+- (void) insertTreeNode:(TreeNode *)treeNode {
+    TreeNode *targetNode = nil;
+
+    for (TreeViewCell *cell in [self visibleCells]) {
+        TreeNode *iter = [self treeNodeForTreeViewCell:cell];
+        if (iter == _selectedNode) {
+            targetNode = iter;
+            break;
+        }
+    }
+    if (targetNode == nil) {
+        targetNode = [self treeNodeForTreeViewCell:[self visibleCells][0]];
+    }
+    NSAssert(targetNode, @"targetNode == nil, something went wrong!");
+    [targetNode insertTreeNode:treeNode];
+
+    [self reloadData];
+    [self resetSelection:NO];
+}
+
 - (void) setFont:(UIFont *)font {
     _font = font;
     [self reloadData];

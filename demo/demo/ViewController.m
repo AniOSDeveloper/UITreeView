@@ -90,9 +90,19 @@
 }
 
 - (void) addFolder:(UIBarButtonItem *)sender {
+    NodeData *data = [[NodeData alloc] init];
+    data.name = @"Holy shit folder";
+    TreeNode *node = [[TreeNode alloc] initWithValue:data];
+    node.isFolder = YES;
+    [_tree insertTreeNode:node];
 }
 
 - (void) addObject:(UIBarButtonItem *)sender {
+    NodeData *data = [[NodeData alloc] init];
+    data.name = @"Holy shit object";
+    TreeNode *node = [[TreeNode alloc] initWithValue:data];
+    node.isFolder = NO;
+    [_tree insertTreeNode:node];
 }
 
 - (void)didReceiveMemoryWarning {

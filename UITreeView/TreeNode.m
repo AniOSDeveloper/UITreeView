@@ -43,6 +43,20 @@
     return allElements;
 }
 
+- (void) insertTreeNode:(TreeNode *)treeNode {
+    TreeNode *parent = nil;
+    NSUInteger index = NSNotFound;
+    if (self.isFolder) {
+        parent = self;
+        index = 0;
+    } else {
+        parent = self.parent;
+        index = [parent.children indexOfObject:self];
+    }
+    treeNode.parent = parent;
+    [parent.children insertObject:treeNode atIndex:index];
+}
+
 - (void) appendChild:(TreeNode *)newChild {
     newChild.parent = self;
     [_children addObject:newChild];
@@ -62,17 +76,8 @@
         return;
     }
     [self removeFromParent];
-    TreeNode *parent = nil;
-    NSUInteger index = NSNotFound;
-    if (destination.isFolder) {
-        parent = destination;
-        index = 0;
-    } else {
-        parent = destination.parent;
-        index = [parent.children indexOfObject:destination];
-    }
-    [parent.children insertObject:self atIndex:index];
-    self.parent = parent;
+
+    [destination insertTreeNode:self];
 }
 
 - (BOOL) containsTreeNode:(TreeNode *)treeNode {

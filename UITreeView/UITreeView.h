@@ -37,5 +37,5 @@
 @property(nonatomic, weak) id<UITreeViewDelegate> treeViewDelegate;
 
 - (instancetype) initWithFrame:(CGRect)frame;
-
+- (void) insertTreeNode:(TreeNode *)treeNode;
 @end

@@ -22,6 +22,7 @@
 @property(nonatomic, assign) BOOL checked;
 
 - (instancetype) initWithValue:(id)value;
+- (void) insertTreeNode:(TreeNode *)treeNode;
 - (void) appendChild:(TreeNode *)newChild;
 - (void) removeFromParent;
 - (void) moveToDestination:(TreeNode *)destination;
