@@ -12,9 +12,9 @@
 
 @protocol TreeViewCellDelegate <NSObject>
 //@optional
-- (BOOL) willCheckingInTreeViewCell:(TreeViewCell *)treeViewCell;
+- (BOOL) queryCheckableInTreeViewCell:(TreeViewCell *)treeViewCell;
 - (void) treeViewCell:(TreeViewCell *)treeViewCell checked:(BOOL)checked;
-- (BOOL) willExpandingInTreeViewCell:(TreeViewCell *)treeViewCell;
+- (BOOL) queryExpandableInTreeViewCell:(TreeViewCell *)treeViewCell;
 - (void) treeViewCell:(TreeViewCell *)treeViewCell expanded:(BOOL)expanded;
 @end
 

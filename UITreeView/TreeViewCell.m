@@ -49,8 +49,8 @@ static CGFloat XOFFSET = 3;
         [content addSubview:checkBox];
         [checkBox setWillCheckedBeginning:^BOOL{
             BOOL allow = YES;
-            if ([_delegate respondsToSelector:@selector(willCheckingInTreeViewCell:)]) {
-                allow = [_delegate willCheckingInTreeViewCell:self];
+            if ([_delegate respondsToSelector:@selector(queryCheckableInTreeViewCell:)]) {
+                allow = [_delegate queryCheckableInTreeViewCell:self];
             }
             return allow;
         }];
@@ -74,8 +74,8 @@ static CGFloat XOFFSET = 3;
         [arrowImageButton setWillCheckedBeginning:^BOOL{
             BOOL allow = isFolder;
             if (allow) {
-                if ([_delegate respondsToSelector:@selector(willExpandingInTreeViewCell:)]) {
-                    allow = [_delegate willExpandingInTreeViewCell:self];
+                if ([_delegate respondsToSelector:@selector(queryExpandableInTreeViewCell:)]) {
+                    allow = [_delegate queryExpandableInTreeViewCell:self];
                 }
             }
             return allow;

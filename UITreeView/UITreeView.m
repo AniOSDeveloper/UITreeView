@@ -78,7 +78,7 @@
 
 #pragma mark TreeViewCellDelegate
 
-- (BOOL) willCheckingInTreeViewCell:(TreeViewCell *)treeViewCell {
+- (BOOL) queryCheckableInTreeViewCell:(TreeViewCell *)treeViewCell {
     BOOL allow = YES;
     if ([_treeViewDelegate respondsToSelector:@selector(treeView:queryCheckableInTreeNode:)]) {
         TreeNode *treeNode = [self treeNodeForTreeViewCell:treeViewCell];
@@ -95,7 +95,7 @@
     }
 }
 
-- (BOOL) willExpandingInTreeViewCell:(TreeViewCell *)treeViewCell {
+- (BOOL) queryExpandableInTreeViewCell:(TreeViewCell *)treeViewCell {
     BOOL allow = YES;
     if ([_treeViewDelegate respondsToSelector:@selector(treeView:queryExpandableInTreeNode:)]) {
         TreeNode *treeNode = [self treeNodeForTreeViewCell:treeViewCell];
