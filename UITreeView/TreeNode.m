@@ -29,8 +29,8 @@
 - (NSArray<TreeNode *> *) visibleNodes {
     NSMutableArray *allElements = [[NSMutableArray alloc] init];
     [allElements addObject:self];
-    if (_nodeState == TreeNodeStateExpanded) {
-        if (_nodeType == TreeNodeTypeFolder) {
+    if (_isFolder) {
+        if (_nodeState == TreeNodeStateExpanded) {
             for (TreeNode *child in _children) {
                 [allElements addObjectsFromArray:[child visibleNodes]];
             }

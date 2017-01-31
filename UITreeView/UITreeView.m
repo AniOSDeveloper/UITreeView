@@ -57,7 +57,7 @@
                                              reuseIdentifier:CellIdentifier
                                                        level:[treeNode levelDepth]
                                                     expanded:(treeNode.nodeState == TreeNodeStateExpanded)
-                                                    isFolder:(treeNode.nodeType == TreeNodeTypeFolder)
+                                                    isFolder:treeNode.isFolder
                                                   isSelected:treeNode.checked];
     cell.titleLabel.text = treeNode.title;
     cell.titleLabel.font = _font;
@@ -111,7 +111,7 @@
     }
     NSAssert(treeNode, @"Can't get the Tree Node data");
 
-    if (treeNode.nodeType == TreeNodeTypeFolder) {
+    if (treeNode.isFolder) {
         if ([_treeViewDelegate respondsToSelector:@selector(treeView:treeNode:expanded:)]) {
             [_treeViewDelegate treeView:self treeNode:treeNode expanded:expanded];
         }

@@ -13,12 +13,6 @@ typedef NS_ENUM(NSInteger, TreeNodeState) {
     TreeNodeStateExpanded,
 };
 
-typedef NS_ENUM(NSInteger, TreeNodeType) {
-    TreeNodeTypeObject,
-    TreeNodeTypeFolder,
-};
-
-
 @interface TreeNode : NSObject
 
 @property(nonatomic, strong) id value;
@@ -29,7 +23,7 @@ typedef NS_ENUM(NSInteger, TreeNodeType) {
 @property(nonatomic, assign, readonly) BOOL isRoot;
 @property(nonatomic, assign, readonly) BOOL hasChildren;
 @property(nonatomic, assign) TreeNodeState nodeState;
-@property(nonatomic, assign) TreeNodeType nodeType;
+@property(nonatomic, assign) BOOL isFolder;
 @property(nonatomic, assign) BOOL checked;
 
 - (instancetype) initWithValue:(id)value;

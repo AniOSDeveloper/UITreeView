@@ -30,9 +30,9 @@
     }
 
     TreeNode *node = [[TreeNode alloc] initWithValue:data];
-    node.nodeType = subNodes ? TreeNodeTypeFolder : TreeNodeTypeObject;
+    node.isFolder = (subNodes != nil);
 
-    node.nodeState = (node.nodeType == TreeNodeTypeFolder) ? TreeNodeStateExpanded : TreeNodeStateCollapsed;
+    node.nodeState = node.isFolder ? TreeNodeStateExpanded : TreeNodeStateCollapsed;
 
     for (NSDictionary *subDict in subNodes) {
         if ([subDict isKindOfClass:[NSDictionary class]]) {
