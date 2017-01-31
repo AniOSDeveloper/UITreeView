@@ -47,14 +47,17 @@ static CGFloat XOFFSET = 3;
         checkBox.checkedImage = [UIImage imageNamed:@"check_box"];
         checkBox.uncheckedImage = [UIImage imageNamed:@"uncheck_box"];
         [content addSubview:checkBox];
-        __weak typeof(self) weakSelf = self;
         [checkBox setWillCheckedBeginning:^BOOL{
-            return YES;
+            BOOL allow = YES;
+            if ([_delegate respondsToSelector:@selector(willCheckingInTreeViewCell:)]) {
+                allow = [_delegate willCheckingInTreeViewCell:self];
+            }
+            return allow;
         }];
         [checkBox setDidCheckedChanged:^(BOOL checked) {
             _isSelected = checked;
-            if ([weakSelf.delegate respondsToSelector:@selector(treeViewCell:checked:)]) {
-                [weakSelf.delegate treeViewCell:weakSelf checked:checked];
+            if ([_delegate respondsToSelector:@selector(treeViewCell:checked:)]) {
+                [_delegate treeViewCell:self checked:checked];
             }
         }];
         [checkBox setChecked:_isSelected];
@@ -69,15 +72,21 @@ static CGFloat XOFFSET = 3;
             arrowImageButton.uncheckedImage = [UIImage imageNamed:@"object"];
         }
         [arrowImageButton setWillCheckedBeginning:^BOOL{
-            return isFolder;
+            BOOL allow = isFolder;
+            if (allow) {
+                if ([_delegate respondsToSelector:@selector(willExpandingInTreeViewCell:)]) {
+                    allow = [_delegate willExpandingInTreeViewCell:self];
+                }
+            }
+            return allow;
         }];
         [arrowImageButton setDidCheckedChanged:^(BOOL checked) {
             if (isFolder == NO) {
                 return;
             }
             _expanded = checked;
-            if ([weakSelf.delegate respondsToSelector:@selector(treeViewCell:expanded:)]) {
-                [weakSelf.delegate treeViewCell:weakSelf expanded:checked];
+            if ([_delegate respondsToSelector:@selector(treeViewCell:expanded:)]) {
+                [_delegate treeViewCell:self expanded:checked];
             }
         }];
         arrowImageButton.checked = _expanded;
