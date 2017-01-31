@@ -86,9 +86,17 @@
 }
 
 - (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    TreeNode *treeNode = [self treeNodeForIndexPath:indexPath];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        if ([_treeViewDelegate respondsToSelector:@selector(treeView:removeTreeNode:)]) {
+            [_treeViewDelegate treeView:self removeTreeNode:treeNode];
+        }
+        if (treeNode.isFolder && treeNode.expanded && treeNode.hasChildren) {
+            [self reloadData];
+            [self resetSelection];
+        } else {
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }

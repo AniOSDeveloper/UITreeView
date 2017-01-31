@@ -31,6 +31,10 @@
     return [[_rootTreeNode visibleNodes] indexOfObject:treeNode];
 }
 
+- (void) treeView:(UITreeView *)treeView removeTreeNode:(TreeNode *)treeNode {
+    [_rootTreeNode removeTreeNode:treeNode];
+}
+
 - (void) treeView:(UITreeView *)treeView didSelectForTreeNode:(TreeNode *)treeNode {
     NSLog(@"Node %@ selected", treeNode.title);
 }

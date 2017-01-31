@@ -23,5 +23,6 @@
 
 - (instancetype) initWithValue:(id)value;
 - (void) addChild:(TreeNode *)newChild;
+- (void) removeTreeNode:(TreeNode *)treeNode;
 - (NSArray<TreeNode *> *) visibleNodes;
 @end

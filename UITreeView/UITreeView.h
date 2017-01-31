@@ -17,6 +17,7 @@
 - (NSInteger) numberOfRowsInTreeView:(UITreeView *)treeView;
 - (TreeNode *) treeView:(UITreeView *)treeView treeNodeForRow:(NSInteger)row;
 - (NSInteger) treeView:(UITreeView *)treeView rowForTreeNode:(TreeNode *)treeNode;
+- (void) treeView:(UITreeView *)treeView removeTreeNode:(TreeNode *)treeNode;
 
 //@optional
 - (void) treeView:(UITreeView *)treeView didSelectForTreeNode:(TreeNode *)treeNode;

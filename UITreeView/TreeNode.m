@@ -44,6 +44,28 @@
     [_children addObject:newChild];
 }
 
+- (void) removeTreeNode:(TreeNode *)treeNode {
+    [self _internalRemove:treeNode];
+}
+
+- (BOOL) _internalRemove:(TreeNode *)node {
+    BOOL result = NO;
+    for (TreeNode *child in _children) {
+        if (node == child) {
+            [_children removeObject:node];
+            result = YES;
+            break;
+        }
+        if (child.isFolder) {
+            result = [child _internalRemove:node];
+            if (result) {
+                break;
+            }
+        }
+    }
+    return result;
+}
+
 - (NSUInteger) levelDepth {
     NSUInteger cnt = 0;
     if (_parent != nil) {
