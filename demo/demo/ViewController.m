@@ -39,7 +39,7 @@
 
 - (void) treeView:(UITreeView *)treeView treeNode:(TreeNode *)treeNode expanded:(BOOL)expanded {
     NSLog(@"Node %@ expanded = %d", treeNode.title, expanded);
-    treeNode.nodeState = expanded ? TreeNodeStateExpanded : TreeNodeStateCollapsed;
+    treeNode.expanded = expanded;
     if (treeNode.hasChildren) {
         [_tree reloadData];
     }

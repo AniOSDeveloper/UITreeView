@@ -8,11 +8,6 @@
 #import <Foundation/Foundation.h>
 
 
-typedef NS_ENUM(NSInteger, TreeNodeState) {
-    TreeNodeStateCollapsed,
-    TreeNodeStateExpanded,
-};
-
 @interface TreeNode : NSObject
 
 @property(nonatomic, strong) id value;
@@ -22,7 +17,7 @@ typedef NS_ENUM(NSInteger, TreeNodeState) {
 @property(nonatomic, assign, readonly) NSUInteger levelDepth;
 @property(nonatomic, assign, readonly) BOOL isRoot;
 @property(nonatomic, assign, readonly) BOOL hasChildren;
-@property(nonatomic, assign) TreeNodeState nodeState;
+@property(nonatomic, assign) BOOL expanded;
 @property(nonatomic, assign) BOOL isFolder;
 @property(nonatomic, assign) BOOL checked;
 

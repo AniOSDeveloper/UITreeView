@@ -56,7 +56,7 @@
     TreeViewCell *cell = [[TreeViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                              reuseIdentifier:CellIdentifier
                                                        level:[treeNode levelDepth]
-                                                    expanded:(treeNode.nodeState == TreeNodeStateExpanded)
+                                                    expanded:treeNode.expanded
                                                     isFolder:treeNode.isFolder
                                                   isSelected:treeNode.checked];
     cell.titleLabel.text = treeNode.title;

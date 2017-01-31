@@ -30,7 +30,7 @@
     NSMutableArray *allElements = [[NSMutableArray alloc] init];
     [allElements addObject:self];
     if (_isFolder) {
-        if (_nodeState == TreeNodeStateExpanded) {
+        if (_expanded) {
             for (TreeNode *child in _children) {
                 [allElements addObjectsFromArray:[child visibleNodes]];
             }
@@ -59,11 +59,6 @@
 
 - (BOOL) hasChildren {
     return (_children.count > 0);
-}
-
-- (void) setNodeState:(TreeNodeState)nodeState {
-    _nodeState = nodeState;
-    // callback notification.
 }
 
 @end
