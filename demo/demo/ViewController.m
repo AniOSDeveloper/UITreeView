@@ -31,9 +31,16 @@
     NSLog(@"Node %@ selected", treeNode.title);
 }
 
+- (BOOL) treeView:(UITreeView *)treeView queryCheckableInTreeNode:(TreeNode *)treeNode {
+    return YES;
+}
+
 - (void) treeView:(UITreeView *)treeView treeNode:(TreeNode *)treeNode checked:(BOOL)checked {
     NSLog(@"Node %@ checked = %d", treeNode.title, checked);
-    [_tree reloadData];
+}
+
+- (BOOL) treeView:(UITreeView *)treeView queryExpandableInTreeNode:(TreeNode *)treeNode {
+    return YES;
 }
 
 - (void) treeView:(UITreeView *)treeView treeNode:(TreeNode *)treeNode expanded:(BOOL)expanded {

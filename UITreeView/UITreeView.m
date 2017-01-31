@@ -79,7 +79,12 @@
 #pragma mark TreeViewCellDelegate
 
 - (BOOL) willCheckingInTreeViewCell:(TreeViewCell *)treeViewCell {
-    return YES;
+    BOOL allow = YES;
+    if ([_treeViewDelegate respondsToSelector:@selector(treeView:queryCheckableInTreeNode:)]) {
+        TreeNode *treeNode = [self treeNodeForTreeViewCell:treeViewCell];
+        allow = [_treeViewDelegate treeView:self queryCheckableInTreeNode:treeNode];
+    }
+    return allow;
 }
 
 - (void) treeViewCell:(TreeViewCell *)treeViewCell checked:(BOOL)checked {
@@ -91,7 +96,12 @@
 }
 
 - (BOOL) willExpandingInTreeViewCell:(TreeViewCell *)treeViewCell {
-    return YES;
+    BOOL allow = YES;
+    if ([_treeViewDelegate respondsToSelector:@selector(treeView:queryExpandableInTreeNode:)]) {
+        TreeNode *treeNode = [self treeNodeForTreeViewCell:treeViewCell];
+        allow = [_treeViewDelegate treeView:self queryExpandableInTreeNode:treeNode];
+    }
+    return allow;
 }
 
 - (void) treeViewCell:(TreeViewCell *)treeViewCell expanded:(BOOL)expanded {
