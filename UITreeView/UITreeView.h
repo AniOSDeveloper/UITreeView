@@ -16,6 +16,7 @@
 @required
 - (NSInteger) numberOfRowsInTreeView:(UITreeView *)treeView;
 - (TreeNode *) treeView:(UITreeView *)treeView treeNodeForRow:(NSInteger)row;
+- (NSInteger) treeView:(UITreeView *)treeView rowForTreeNode:(TreeNode *)treeNode;
 
 //@optional
 - (void) treeView:(UITreeView *)treeView didSelectForTreeNode:(TreeNode *)treeNode;

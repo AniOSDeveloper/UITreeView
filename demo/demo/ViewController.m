@@ -27,6 +27,10 @@
     return [[_rootTreeNode visibleNodes] objectAtIndex:row];
 }
 
+- (NSInteger) treeView:(UITreeView *)treeView rowForTreeNode:(TreeNode *)treeNode {
+    return [[_rootTreeNode visibleNodes] indexOfObject:treeNode];
+}
+
 - (void) treeView:(UITreeView *)treeView didSelectForTreeNode:(TreeNode *)treeNode {
     NSLog(@"Node %@ selected", treeNode.title);
 }

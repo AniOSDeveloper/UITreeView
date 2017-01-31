@@ -13,6 +13,7 @@
 @end
 
 @implementation UITreeView {
+    TreeNode *_selectedNode;
 }
 
 - (instancetype) initWithFrame:(CGRect)frame {
@@ -33,6 +34,18 @@
 - (void) setFont:(UIFont *)font {
     _font = font;
     [self reloadData];
+    [self resetSelection];
+}
+
+- (void) resetSelection {
+    NSInteger row = NSNotFound;
+    if ([_treeViewDelegate respondsToSelector:@selector(treeView:rowForTreeNode:)]) {
+        row = [_treeViewDelegate treeView:self rowForTreeNode:_selectedNode];
+    }
+    if (row != NSNotFound) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        [self selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -67,13 +80,40 @@
     return cell;
 }
 
+- (BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    TreeNode *treeNode = [self treeNodeForIndexPath:indexPath];
+    return (treeNode.isRoot == NO);
+}
+
+- (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
+
+- (void) tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+}
+
+- (BOOL) tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    TreeNode *treeNode = [self treeNodeForIndexPath:indexPath];
+    return (treeNode.isRoot == NO);
+}
+
 #pragma mark - UITableViewDelegate
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    TreeNode *treeNode = [self treeNodeForIndexPath:indexPath];
     if ([_treeViewDelegate respondsToSelector:@selector(treeView:didSelectForTreeNode:)]) {
-        TreeNode *treeNode = [self treeNodeForIndexPath:indexPath];
         [_treeViewDelegate treeView:self didSelectForTreeNode:treeNode];
     }
+    _selectedNode = treeNode;
+}
+
+- (NSIndexPath *) tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
+    return nil;
 }
 
 #pragma mark - TreeViewCellDelegate
@@ -110,6 +150,7 @@
         treeNode.expanded = expanded;
         if (treeNode.hasChildren) {
             [self reloadData];
+            [self resetSelection];
         }
         if ([_treeViewDelegate respondsToSelector:@selector(treeView:treeNode:expanded:)]) {
             [_treeViewDelegate treeView:self treeNode:treeNode expanded:expanded];
