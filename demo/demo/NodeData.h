@@ -12,9 +12,6 @@
 @interface NodeData : NSObject
 
 @property(nonatomic, strong) NSString *name;
-@property(nonatomic) int category_id;
-@property(nonatomic) int parent_id;
-@property(nonatomic) int productCount;
 
 + (TreeNode *) createTree;
 

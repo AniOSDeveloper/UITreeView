@@ -40,7 +40,9 @@
 - (void) treeView:(UITreeView *)treeView treeNode:(TreeNode *)treeNode expanded:(BOOL)expanded {
     NSLog(@"Node %@ expanded = %d", treeNode.title, expanded);
     treeNode.nodeState = expanded ? TreeNodeStateExpanded : TreeNodeStateCollapsed;
-    [_tree reloadData];
+    if (treeNode.hasChildren) {
+        [_tree reloadData];
+    }
 }
 
 #pragma mark -
@@ -67,7 +69,8 @@
     CGFloat left = 100;
     CGFloat top = 60;
     [super viewDidLayoutSubviews];
-    _tree.frame = CGRectMake(left, top, _tree.frame.size.width, self.view.frame.size.height-top*2);
+    CGSize size = self.view.frame.size;
+    _tree.frame = CGRectMake(left, top, size.width-left*2, size.height-top*2);
 }
 
 @end

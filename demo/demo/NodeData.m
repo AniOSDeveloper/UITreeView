@@ -12,7 +12,7 @@
 @implementation NodeData
 
 - (NSString *) description {
-    return [_name isKindOfClass:[NSString class]] ? _name : @"Node";
+    return [_name isKindOfClass:[NSString class]] ? _name : [super description];
 }
 
 + (TreeNode *) createTree {
@@ -23,9 +23,6 @@
 + (TreeNode *) _internalCreateTree:(NSDictionary *)dict {
     NodeData *data = [[NodeData alloc] init];
     data.name = dict[@"name"];
-    data.category_id = [dict[@"category_id"] intValue];
-    data.parent_id = [dict[@"parent_id"] intValue];
-    data.productCount = [dict[@"product_count"] intValue];
 
     NSArray *subNodes = dict[@"categories"];
     if ([subNodes isKindOfClass:[NSArray class]] == NO) {

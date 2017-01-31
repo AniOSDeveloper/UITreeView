@@ -7,12 +7,12 @@
 
 #import "TreeViewCell.h"
 
+CGRect CGRectInflate(CGRect rect, CGFloat dx, CGFloat dy) {
+    return CGRectMake(rect.origin.x-dx, rect.origin.y-dy, rect.size.width+2*dx, rect.size.height+2*dy);
+}
+
 static CGFloat IMG_HEIGHT_WIDTH = 20;
-static CGFloat CELL_HEIGHT = 44;
-static CGFloat SCREEN_WIDTH = 320;
-static CGFloat LEVEL_INDENT = 32;
-static CGFloat YOFFSET = 12;
-static CGFloat XOFFSET = 6;
+static CGFloat XOFFSET = 3;
 
 @implementation TreeViewCell {
     UICheckableButton *_arrowImageButton;
@@ -32,7 +32,7 @@ static CGFloat XOFFSET = 6;
         _level = level;
         _expanded = expanded;
         _isSelected = value;
-        _showCheckBox = YES;
+        _showCheckBox = NO;
 
         UIView *content = self.contentView;
 
@@ -66,6 +66,9 @@ static CGFloat XOFFSET = 6;
             arrowImageButton.uncheckedImage = [UIImage imageNamed:@"object"];
         }
         [arrowImageButton setOnCheckedChanged:^(BOOL checked) {
+            if (isFolder == NO) {
+                return;
+            }
             _expanded = checked;
             if ([weakSelf.delegate respondsToSelector:@selector(treeViewCell:expanded:)]) {
                 [weakSelf.delegate treeViewCell:weakSelf expanded:checked];
@@ -83,26 +86,20 @@ static CGFloat XOFFSET = 6;
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    CGRect contentRect = self.contentView.bounds;
 
-    // if (!self.editing)
-    {
-        CGFloat boundsX = contentRect.origin.x;
-        CGRect titleFrame = CGRectMake((boundsX + _level + 2) * LEVEL_INDENT,
-                                       0,
-                                       SCREEN_WIDTH - (_level * LEVEL_INDENT),
-                                       CELL_HEIGHT);
-        if (_showCheckBox == NO) {
-            titleFrame.origin.x -= (IMG_HEIGHT_WIDTH + 5 + XOFFSET);
-        }
-        _titleLabel.frame = titleFrame;
+    CGSize size = self.contentView.bounds.size;
+    CGFloat stepSize = size.height;
+    CGRect rc = CGRectMake(_level * stepSize, 0, stepSize, stepSize);
+    _arrowImageButton.frame = CGRectInflate(rc, -XOFFSET, -XOFFSET);
 
-        CGFloat cx = ((boundsX + _level + 1.8) * LEVEL_INDENT) - (IMG_HEIGHT_WIDTH + XOFFSET);
-        _checkBox.frame = CGRectMake(cx, YOFFSET, IMG_HEIGHT_WIDTH+5, IMG_HEIGHT_WIDTH+5);
-        _checkBox.hidden = !_showCheckBox;
+    _checkBox.hidden = !_showCheckBox;
 
-        CGFloat ax = ((boundsX + _level + 1) * LEVEL_INDENT) - (IMG_HEIGHT_WIDTH + XOFFSET);
-        _arrowImageButton.frame = CGRectMake(ax, YOFFSET, IMG_HEIGHT_WIDTH+5, IMG_HEIGHT_WIDTH+5);
+    if (_showCheckBox) {
+        rc = CGRectMake((_level + 1) * stepSize, 0, stepSize, stepSize);
+        _checkBox.frame = CGRectInflate(rc, -XOFFSET, -XOFFSET);
+        _titleLabel.frame = CGRectMake((_level + 2) * stepSize, 0, size.width - (_level + 3) * stepSize, stepSize);
+    } else {
+        _titleLabel.frame = CGRectMake((_level + 1) * stepSize, 0, size.width - (_level + 2) * stepSize, stepSize);
     }
 }
 
