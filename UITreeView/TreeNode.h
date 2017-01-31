@@ -24,6 +24,7 @@
 - (instancetype) initWithValue:(id)value;
 - (void) appendChild:(TreeNode *)newChild;
 - (void) removeFromParent;
+- (void) moveToDestination:(TreeNode *)destination;
 - (BOOL) containTreeNode:(TreeNode *)treeNode;
 - (NSArray<TreeNode *> *) visibleNodes;
 @end

@@ -42,6 +42,9 @@
     NSLog(@"TreeNode \"%@\" removeFromParent", treeNode.title);
 }
 
+- (void) treeView:(UITreeView *)treeView moveTreeNode:(TreeNode *)treeNode to:(TreeNode *)to {
+}
+
 - (void) treeView:(UITreeView *)treeView didSelectForTreeNode:(TreeNode *)treeNode {
     NSLog(@"Node %@ selected", treeNode.title);
 }

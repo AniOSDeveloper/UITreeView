@@ -116,6 +116,14 @@
     }
     TreeNode *srcNode = [self treeNodeForIndexPath:fromIndexPath];
     TreeNode *targetNode = [self treeNodeForIndexPath:toIndexPath];
+    [srcNode moveToDestination:targetNode];
+
+    if ([_treeViewDelegate respondsToSelector:@selector(treeView:moveTreeNode:to:)]) {
+        [_treeViewDelegate treeView:self moveTreeNode:srcNode to:targetNode];
+    }
+
+    [self reloadData];
+    [self resetSelection:NO];
 }
 
 - (BOOL) tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -136,9 +144,10 @@
 - (NSIndexPath *) tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
     TreeNode *srcNode = [self treeNodeForIndexPath:sourceIndexPath];
     TreeNode *targetNode = [self treeNodeForIndexPath:proposedDestinationIndexPath];
-    if ([srcNode containTreeNode:targetNode]) {
+    if ([srcNode containTreeNode:targetNode] || srcNode==targetNode) {
         return sourceIndexPath;
     } else {
+        // NSLog(@"Moving to target node \"%@\"", targetNode.title);
         return proposedDestinationIndexPath;
     }
 }

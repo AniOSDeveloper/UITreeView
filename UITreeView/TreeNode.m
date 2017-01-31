@@ -56,6 +56,25 @@
     }
 }
 
+- (void) moveToDestination:(TreeNode *)destination {
+    NSAssert([self containTreeNode:destination]==NO, @"[self containTreeNode:destination] something gent wrong!");
+    if (self == destination || destination == nil) {
+        return;
+    }
+    [self removeFromParent];
+    TreeNode *parent = nil;
+    NSUInteger index = NSNotFound;
+    if (destination.isFolder) {
+        parent = destination;
+        index = 0;
+    } else {
+        parent = destination.parent;
+        index = [parent.children indexOfObject:destination];
+    }
+    [parent.children insertObject:self atIndex:index];
+    self.parent = parent;
+}
+
 - (BOOL) containTreeNode:(TreeNode *)treeNode {
     TreeNode *parent = treeNode.parent;
     if (parent == nil) {
