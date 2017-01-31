@@ -11,6 +11,7 @@
 @property(nonatomic, assign) BOOL checked;
 @property(nonatomic, strong) UIImage *checkedImage;
 @property(nonatomic, strong) UIImage *uncheckedImage;
-@property(nonatomic, strong) void(^onCheckedChanged)(BOOL checked);
+@property(nonatomic, strong) BOOL(^willCheckedBeginning)(void);
+@property(nonatomic, strong) void(^didCheckedChanged)(BOOL checked);
 - (instancetype) initWithFrame:(CGRect)frame;
 @end

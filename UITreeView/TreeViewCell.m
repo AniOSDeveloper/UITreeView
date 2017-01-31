@@ -48,7 +48,10 @@ static CGFloat XOFFSET = 3;
         checkBox.uncheckedImage = [UIImage imageNamed:@"uncheck_box"];
         [content addSubview:checkBox];
         __weak typeof(self) weakSelf = self;
-        [checkBox setOnCheckedChanged:^(BOOL checked) {
+        [checkBox setWillCheckedBeginning:^BOOL{
+            return YES;
+        }];
+        [checkBox setDidCheckedChanged:^(BOOL checked) {
             _isSelected = checked;
             if ([weakSelf.delegate respondsToSelector:@selector(treeViewCell:checked:)]) {
                 [weakSelf.delegate treeViewCell:weakSelf checked:checked];
@@ -65,7 +68,10 @@ static CGFloat XOFFSET = 3;
             arrowImageButton.checkedImage = [UIImage imageNamed:@"object"];
             arrowImageButton.uncheckedImage = [UIImage imageNamed:@"object"];
         }
-        [arrowImageButton setOnCheckedChanged:^(BOOL checked) {
+        [arrowImageButton setWillCheckedBeginning:^BOOL{
+            return isFolder;
+        }];
+        [arrowImageButton setDidCheckedChanged:^(BOOL checked) {
             if (isFolder == NO) {
                 return;
             }

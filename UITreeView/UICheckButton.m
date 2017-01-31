@@ -36,10 +36,17 @@
 
 - (void) clickme:(UICheckableButton *)sender {
     NSAssert(sender == self, @"Something went wrong");
+    BOOL allowChanging = YES;
+    if (_willCheckedBeginning) {
+        allowChanging = _willCheckedBeginning();
+    }
+    if (allowChanging == NO) {
+        return;
+    }
     BOOL checked = !self.checked;
     [self setChecked:checked];
-    if (_onCheckedChanged) {
-        _onCheckedChanged(checked);
+    if (_didCheckedChanged) {
+        _didCheckedChanged(checked);
     }
 }
 
