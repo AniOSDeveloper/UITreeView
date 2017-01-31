@@ -30,7 +30,12 @@
     return self;
 }
 
-#pragma mark UITableViewDataSource
+- (void) setFont:(UIFont *)font {
+    _font = font;
+    [self reloadData];
+}
+
+#pragma mark - UITableViewDataSource
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -62,7 +67,7 @@
     return cell;
 }
 
-#pragma mark UITableViewDelegate
+#pragma mark - UITableViewDelegate
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([_treeViewDelegate respondsToSelector:@selector(treeView:didSelectForTreeNode:)]) {
@@ -71,12 +76,7 @@
     }
 }
 
-- (void) setFont:(UIFont *)font {
-    _font = font;
-    [self reloadData];
-}
-
-#pragma mark TreeViewCellDelegate
+#pragma mark - TreeViewCellDelegate
 
 - (BOOL) queryCheckableInTreeViewCell:(TreeViewCell *)treeViewCell {
     BOOL allow = YES;
@@ -117,7 +117,7 @@
     }
 }
 
-#pragma mark -
+#pragma mark - retrieve TreeNode object from special cell
 
 - (TreeNode *) treeNodeForTreeViewCell:(TreeViewCell *)treeViewCell {
     NSIndexPath *indexPath = [self indexPathForCell:treeViewCell];
