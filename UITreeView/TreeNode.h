@@ -22,7 +22,8 @@
 @property(nonatomic, assign) BOOL checked;
 
 - (instancetype) initWithValue:(id)value;
-- (void) addChild:(TreeNode *)newChild;
-- (void) removeTreeNode:(TreeNode *)treeNode;
+- (void) appendChild:(TreeNode *)newChild;
+- (void) removeFromParent;
+- (BOOL) containTreeNode:(TreeNode *)treeNode;
 - (NSArray<TreeNode *> *) visibleNodes;
 @end

@@ -11,6 +11,10 @@
     NSArray *_flattenedTreeCache;
 }
 
+- (void) dealloc {
+    NSLog(@"TreeNode \"%@\" dealloc", self.title);
+}
+
 - (instancetype) initWithValue:(id)value {
     if (self = [super init]) {
         _value = value;
@@ -39,31 +43,29 @@
     return allElements;
 }
 
-- (void) addChild:(TreeNode *)newChild {
+- (void) appendChild:(TreeNode *)newChild {
     newChild.parent = self;
     [_children addObject:newChild];
 }
 
-- (void) removeTreeNode:(TreeNode *)treeNode {
-    [self _internalRemove:treeNode];
+- (void) removeFromParent {
+    TreeNode *parent = self.parent;
+    if (parent) {
+        [parent.children removeObject:self];
+        self.parent = nil;
+    }
 }
 
-- (BOOL) _internalRemove:(TreeNode *)node {
-    BOOL result = NO;
-    for (TreeNode *child in _children) {
-        if (node == child) {
-            [_children removeObject:node];
-            result = YES;
-            break;
-        }
-        if (child.isFolder) {
-            result = [child _internalRemove:node];
-            if (result) {
-                break;
-            }
-        }
+- (BOOL) containTreeNode:(TreeNode *)treeNode {
+    TreeNode *parent = treeNode.parent;
+    if (parent == nil) {
+        return NO;
     }
-    return result;
+    if (self == parent) {
+        return YES;
+    } else {
+        return [self containTreeNode:parent];
+    }
 }
 
 - (NSUInteger) levelDepth {

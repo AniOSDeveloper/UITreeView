@@ -39,7 +39,7 @@
 }
 
 - (void) treeView:(UITreeView *)treeView removeTreeNode:(TreeNode *)treeNode {
-    [_rootTreeNode removeTreeNode:treeNode];
+    NSLog(@"TreeNode \"%@\" removeFromParent", treeNode.title);
 }
 
 - (void) treeView:(UITreeView *)treeView didSelectForTreeNode:(TreeNode *)treeNode {

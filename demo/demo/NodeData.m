@@ -37,7 +37,7 @@
     for (NSDictionary *subDict in subNodes) {
         if ([subDict isKindOfClass:[NSDictionary class]]) {
             TreeNode *subNode = [self _internalCreateTree:subDict];
-            [node addChild:subNode];
+            [node appendChild:subNode];
         }
     }
 

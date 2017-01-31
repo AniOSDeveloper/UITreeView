@@ -95,6 +95,7 @@
 - (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     TreeNode *treeNode = [self treeNodeForIndexPath:indexPath];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [treeNode removeFromParent];
         if ([_treeViewDelegate respondsToSelector:@selector(treeView:removeTreeNode:)]) {
             [_treeViewDelegate treeView:self removeTreeNode:treeNode];
         }
@@ -110,6 +111,11 @@
 }
 
 - (void) tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    if ([fromIndexPath isEqual:toIndexPath]) {
+        return;
+    }
+    TreeNode *srcNode = [self treeNodeForIndexPath:fromIndexPath];
+    TreeNode *targetNode = [self treeNodeForIndexPath:toIndexPath];
 }
 
 - (BOOL) tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -128,7 +134,13 @@
 }
 
 - (NSIndexPath *) tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
-    return nil;
+    TreeNode *srcNode = [self treeNodeForIndexPath:sourceIndexPath];
+    TreeNode *targetNode = [self treeNodeForIndexPath:proposedDestinationIndexPath];
+    if ([srcNode containTreeNode:targetNode]) {
+        return sourceIndexPath;
+    } else {
+        return proposedDestinationIndexPath;
+    }
 }
 
 #pragma mark - TreeViewCellDelegate
