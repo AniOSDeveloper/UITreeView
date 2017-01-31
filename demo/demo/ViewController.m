@@ -75,6 +75,21 @@
     [self.view addSubview:_tree];
     //UIFont *font =[UIFont fontWithName:@"Helvetica" size:10];
     //[_tree setFont:font];
+
+    UIBarButtonItem *edit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit:)];
+    UIBarButtonItem *addFolder = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"addfolder"] style:UIBarButtonItemStylePlain target:self action:@selector(addFolder:)];
+    UIBarButtonItem *addObject = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"addobject"] style:UIBarButtonItemStylePlain target:self action:@selector(addObject:)];
+    self.navigationItem.rightBarButtonItems = @[edit, addFolder, addObject];
+}
+
+- (void) edit:(UIBarButtonItem *)sender {
+    _tree.editing = !_tree.editing;
+}
+
+- (void) addFolder:(UIBarButtonItem *)sender {
+}
+
+- (void) addObject:(UIBarButtonItem *)sender {
 }
 
 - (void)didReceiveMemoryWarning {
