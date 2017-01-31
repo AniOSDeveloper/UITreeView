@@ -12,7 +12,6 @@
 		A2FE88C81E37A1670073FCCA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FE88C71E37A1670073FCCA /* main.m */; };
 		A2FE88CB1E37A1670073FCCA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FE88CA1E37A1670073FCCA /* AppDelegate.m */; };
 		A2FE88CE1E37A1670073FCCA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FE88CD1E37A1670073FCCA /* ViewController.m */; };
-		A2FE88D11E37A1670073FCCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2FE88CF1E37A1670073FCCA /* Main.storyboard */; };
 		A2FE88D31E37A1670073FCCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2FE88D21E37A1670073FCCA /* Assets.xcassets */; };
 		A2FE88D61E37A1670073FCCA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2FE88D41E37A1670073FCCA /* LaunchScreen.storyboard */; };
 		A2FE88EB1E37A1C90073FCCA /* check_box.png in Resources */ = {isa = PBXBuildFile; fileRef = A2FE88DF1E37A1C90073FCCA /* check_box.png */; };
@@ -36,7 +35,6 @@
 		A2FE88CA1E37A1670073FCCA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A2FE88CC1E37A1670073FCCA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A2FE88CD1E37A1670073FCCA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		A2FE88D01E37A1670073FCCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A2FE88D21E37A1670073FCCA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2FE88D51E37A1670073FCCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2FE88D71E37A1670073FCCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -93,7 +91,6 @@
 				A2FE88CD1E37A1670073FCCA /* ViewController.m */,
 				A2401ED71E3D061A00C4CEB7 /* NodeData.h */,
 				A2401ED81E3D061A00C4CEB7 /* NodeData.m */,
-				A2FE88CF1E37A1670073FCCA /* Main.storyboard */,
 				A2FE88D21E37A1670073FCCA /* Assets.xcassets */,
 				A2FE88D41E37A1670073FCCA /* LaunchScreen.storyboard */,
 				A2FE88D71E37A1670073FCCA /* Info.plist */,
@@ -204,7 +201,6 @@
 				A2FE88EB1E37A1C90073FCCA /* check_box.png in Resources */,
 				A2FE88EC1E37A1C90073FCCA /* close.png in Resources */,
 				A2FE88EE1E37A1C90073FCCA /* uncheck_box.png in Resources */,
-				A2FE88D11E37A1670073FCCA /* Main.storyboard in Resources */,
 				A2FE88F41E37A28A0073FCCA /* category.plist in Resources */,
 				A2FE88ED1E37A1C90073FCCA /* open.png in Resources */,
 			);
@@ -231,14 +227,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A2FE88CF1E37A1670073FCCA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A2FE88D01E37A1670073FCCA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A2FE88D41E37A1670073FCCA /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

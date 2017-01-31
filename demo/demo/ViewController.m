@@ -18,6 +18,13 @@
     TreeNode *_rootTreeNode;
 }
 
+- (instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    }
+    return self;
+}
+
 #pragma mark - UITreeViewDelegate
 - (NSInteger) numberOfRowsInTreeView:(UITreeView *)treeView {
     return [_rootTreeNode visibleNodes].count;
