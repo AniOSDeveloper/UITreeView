@@ -2,12 +2,11 @@
 //  UITreeView.m
 //  UITreeView
 //
-//  Created by Varun Naharia on 26/08/15.
+//  Created by OneSecure on 2017/2/1.
 //
 //
 
 #import "UITreeView.h"
-#import "NodeData.h"
 
 @interface UITreeView () <UITableViewDataSource, UITableViewDelegate, TreeViewCellDelegate>
 @end
@@ -34,7 +33,9 @@
 - (void) insertTreeNode:(TreeNode *)treeNode {
     TreeNode *targetNode = nil;
 
-    for (TreeViewCell *cell in [self visibleCells]) {
+    NSArray<TreeViewCell *> *cells = [self visibleCells];
+
+    for (TreeViewCell *cell in cells) {
         TreeNode *iter = [self treeNodeForTreeViewCell:cell];
         if (iter == _selectedNode) {
             targetNode = iter;
@@ -42,10 +43,14 @@
         }
     }
     if (targetNode == nil) {
-        targetNode = [self treeNodeForTreeViewCell:[self visibleCells][0]];
+        targetNode = [self treeNodeForTreeViewCell:cells[0]];
     }
     NSAssert(targetNode, @"targetNode == nil, something went wrong!");
     [targetNode insertTreeNode:treeNode];
+
+    if ([_treeViewDelegate respondsToSelector:@selector(treeView:addTreeNode:)]) {
+        [_treeViewDelegate treeView:self addTreeNode:treeNode];
+    }
 
     [self reloadData];
     [self resetSelection:NO];

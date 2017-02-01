@@ -2,8 +2,8 @@
 //  ViewController.m
 //  demo
 //
-//  Created by Ralph Shane on 24/01/2017.
-//  Copyright © 2017 Ralph Shane. All rights reserved.
+//  Created by OneSecure on 24/01/2017.
+//  Copyright © 2017 OneSecure. All rights reserved.
 //
 
 #import "ViewController.h"
@@ -43,6 +43,9 @@
 }
 
 - (void) treeView:(UITreeView *)treeView moveTreeNode:(TreeNode *)treeNode to:(TreeNode *)to {
+}
+
+- (void) treeView:(UITreeView *)treeView addTreeNode:(TreeNode *)treeNode {
 }
 
 - (void) treeView:(UITreeView *)treeView didSelectForTreeNode:(TreeNode *)treeNode {

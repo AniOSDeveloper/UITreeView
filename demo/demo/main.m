@@ -2,8 +2,8 @@
 //  main.m
 //  demo
 //
-//  Created by Ralph Shane on 24/01/2017.
-//  Copyright © 2017 Ralph Shane. All rights reserved.
+//  Created by OneSecure on 24/01/2017.
+//  Copyright © 2017 OneSecure. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

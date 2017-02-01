@@ -2,7 +2,7 @@
 //  UITreeView.h
 //  UITreeView
 //
-//  Created by Varun Naharia on 26/08/15.
+//  Created by OneSecure on 2017/2/1.
 //
 //
 
@@ -19,6 +19,7 @@
 - (NSInteger) treeView:(UITreeView *)treeView rowForTreeNode:(TreeNode *)treeNode;
 - (void) treeView:(UITreeView *)treeView removeTreeNode:(TreeNode *)treeNode;
 - (void) treeView:(UITreeView *)treeView moveTreeNode:(TreeNode *)treeNode to:(TreeNode *)to;
+- (void) treeView:(UITreeView *)treeView addTreeNode:(TreeNode *)treeNode;
 
 //@optional
 - (void) treeView:(UITreeView *)treeView didSelectForTreeNode:(TreeNode *)treeNode;
