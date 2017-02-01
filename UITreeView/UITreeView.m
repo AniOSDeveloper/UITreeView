@@ -111,7 +111,11 @@
 
 - (BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     TreeNode *treeNode = [self treeNodeForIndexPath:indexPath];
-    return (treeNode.isRoot == NO);
+    if ([_treeViewDelegate respondsToSelector:@selector(treeView:canEditTreeNode:)]) {
+        return [_treeViewDelegate treeView:self canEditTreeNode:treeNode];
+    } else {
+        return (treeNode.isRoot == NO);
+    }
 }
 
 - (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -150,7 +154,11 @@
 
 - (BOOL) tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     TreeNode *treeNode = [self treeNodeForIndexPath:indexPath];
-    return (treeNode.isRoot == NO);
+    if ([_treeViewDelegate respondsToSelector:@selector(treeView:canMoveTreeNode:)]) {
+        return [_treeViewDelegate treeView:self canMoveTreeNode:treeNode];
+    } else {
+        return (treeNode.isRoot == NO);
+    }
 }
 
 #pragma mark - UITableViewDelegate

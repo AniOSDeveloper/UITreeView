@@ -28,6 +28,9 @@
 - (void) treeView:(UITreeView *)treeView treeNode:(TreeNode *)treeNode checked:(BOOL)checked;
 - (BOOL) treeView:(UITreeView *)treeView queryExpandableInTreeNode:(TreeNode *)treeNode;
 - (void) treeView:(UITreeView *)treeView treeNode:(TreeNode *)treeNode expanded:(BOOL)expanded;
+@optional
+- (BOOL) treeView:(UITreeView *)treeView canEditTreeNode:(TreeNode *)treeNode;
+- (BOOL) treeView:(UITreeView *)treeView canMoveTreeNode:(TreeNode *)treeNode;
 @end
 
 

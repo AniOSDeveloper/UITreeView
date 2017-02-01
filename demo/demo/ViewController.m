@@ -68,6 +68,14 @@
     NSLog(@"Node %@ expanded = %d", treeNode.title, expanded);
 }
 
+- (BOOL) treeView:(UITreeView *)treeView canEditTreeNode:(TreeNode *)treeNode {
+    return (treeNode.isRoot == NO);
+}
+
+- (BOOL) treeView:(UITreeView *)treeView canMoveTreeNode:(TreeNode *)treeNode {
+    return (treeNode.isRoot == NO);
+}
+
 #pragma mark -
 
 - (void)viewDidLoad {
