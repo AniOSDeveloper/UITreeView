@@ -82,10 +82,19 @@
     //UIFont *font =[UIFont fontWithName:@"Helvetica" size:10];
     //[_tree setFont:font];
 
+    [self _treeBoarder];
+
     UIBarButtonItem *edit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit:)];
     UIBarButtonItem *addFolder = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"addfolder"] style:UIBarButtonItemStylePlain target:self action:@selector(addFolder:)];
     UIBarButtonItem *addObject = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"addobject"] style:UIBarButtonItemStylePlain target:self action:@selector(addObject:)];
     self.navigationItem.rightBarButtonItems = @[edit, addFolder, addObject];
+}
+
+- (void) _treeBoarder {
+    _tree.layer.cornerRadius = 7.;
+    _tree.layer.borderWidth = .5;
+    _tree.layer.masksToBounds = YES;
+    _tree.layer.borderColor = [UIColor grayColor].CGColor;
 }
 
 - (void) edit:(UIBarButtonItem *)sender {
@@ -114,8 +123,8 @@
 }
 
 - (void) viewDidLayoutSubviews {
-    CGFloat left = 100;
-    CGFloat top = 60;
+    CGFloat left = 8;
+    CGFloat top = 8;
     [super viewDidLayoutSubviews];
     CGSize size = self.view.frame.size;
     _tree.frame = CGRectMake(left, top, size.width-left*2, size.height-top*2);

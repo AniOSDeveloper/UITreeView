@@ -23,11 +23,6 @@
         self.dataSource=self;
         self.separatorStyle= UITableViewCellSeparatorStyleNone;
         _font = [UIFont systemFontOfSize:16];
-
-        self.layer.cornerRadius = 7.;
-        self.layer.borderWidth = .5;
-        self.layer.masksToBounds = YES;
-        self.layer.borderColor = [UIColor grayColor].CGColor;
     }
     return self;
 }
