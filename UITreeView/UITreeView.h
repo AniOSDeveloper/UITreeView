@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TreeNode.h"
-#import "TreeViewCell.h"
 
+@class TreeNode;
 @class UITreeView;
 
 @protocol UITreeViewDelegate <NSObject>

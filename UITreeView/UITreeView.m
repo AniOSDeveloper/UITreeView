@@ -7,6 +7,8 @@
 //
 
 #import "UITreeView.h"
+#import "TreeViewCell.h"
+#import "TreeNode.h"
 
 @interface UITreeView () <UITableViewDataSource, UITableViewDelegate, TreeViewCellDelegate>
 @end
